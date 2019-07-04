@@ -16,7 +16,7 @@ exports.register = async function(req, res) {
     }
 }
 
-exports.signup = async function(req, res) {
+exports.signIn = async function(req, res) {
    try {
         const user = await User.findOne({ email: req.body.email })
         if (!user) {
@@ -39,7 +39,8 @@ exports.signup = async function(req, res) {
         const token = jwt.sign(payload, 'jwt_secret', { expiresIn: '7d'})
         res.json({
             token,
-            username: user.username
+            username: user.username,
+            id: user.id
         })
    } catch(err) {
         res.status(500).json({

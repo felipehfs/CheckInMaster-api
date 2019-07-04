@@ -7,7 +7,7 @@ module.exports = app => {
   
     // autenticacao
     app.post("/api/register", userHandler.register)
-    app.post("/api/signup", userHandler.signup)
+    app.post("/api/login", userHandler.signIn)
 
     app.put("/api/users/:id", passport.authenticate('jwt', { session: false}), userHandler.updateUser)
 }
