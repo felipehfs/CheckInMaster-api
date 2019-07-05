@@ -26,7 +26,7 @@ module.exports = function(io) {
     });
 
     socket.on("disconnect", () => {
-      console.log("id", user.id);
+      if (!user) return
       User.findOneAndUpdate({ _id: user.id }, { $set: { online: false } }).then(
         updatedUser => {
           updatedUser.password = undefined;

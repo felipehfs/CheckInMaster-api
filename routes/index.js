@@ -1,4 +1,4 @@
-const { userHandler } = require('../controllers')
+const { userHandler, inviteHandler } = require('../controllers')
 const passport = require("passport")
 
 module.exports = app => {
@@ -8,6 +8,8 @@ module.exports = app => {
     // autenticacao
     app.post("/api/register", userHandler.register)
     app.post("/api/login", userHandler.signIn)
+
+    app.post("/api/invites", passport.authenticate('jwt', { session: false}), inviteHandler.createInvite)
 
     app.put("/api/users/:id", passport.authenticate('jwt', { session: false}), userHandler.updateUser)
 }

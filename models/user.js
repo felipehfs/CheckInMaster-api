@@ -7,7 +7,8 @@ const _schema = {
     },
     email: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     online: {
         type: Boolean,
