@@ -11,8 +11,9 @@
 - [x] Node 10 acima
 
 Rode o comando para instalar as dependência.
+
 ```bash
     yarn install 
 ```
 
-Após isso rode a api na sua máquina e está tudo pronto e você pode rodar o (front)[]. 
+Após isso rode a api na sua máquina e está tudo pronto e você pode rodar o (front)[https://github.com/felipehfs/CheckInMaster-app]. 
