@@ -8,9 +8,9 @@ exports.createInvite = async function(req, res) {
             res.status(404).json({ message: 'Email not found!' })
             return
         }
-        const newInvite = await Invite.create({ from: req.user.id,  to: destUser._id})
+        const newInvite = await Invite.create({ from: req.user.id,  to: destUser._id })
         res.status(201).json(newInvite)
-    }catch(err) {
+    } catch(err) {
         console.error(err)
         res.status(500).json({ message: err})
     }

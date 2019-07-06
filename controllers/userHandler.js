@@ -59,3 +59,17 @@ exports.updateUser = async function(req, res) {
         })
     }
 }
+
+exports.getUser = async function(req, res) {
+    try {
+        const user = await User.findOne({ _id: req.user.id})
+        if (user) {
+            user.password = undefined
+        }
+        res.json(user)
+    } catch(err) {
+        res.status(500).json({
+            message: err
+        })
+    }
+}

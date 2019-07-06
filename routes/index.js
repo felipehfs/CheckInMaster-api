@@ -10,6 +10,6 @@ module.exports = app => {
     app.post("/api/login", userHandler.signIn)
 
     app.post("/api/invites", passport.authenticate('jwt', { session: false}), inviteHandler.createInvite)
-
+    app.get("/api/users", passport.authenticate('jwt', {session: false}), userHandler.getUser)
     app.put("/api/users/:id", passport.authenticate('jwt', { session: false}), userHandler.updateUser)
 }
