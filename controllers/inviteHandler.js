@@ -8,6 +8,12 @@ exports.createInvite = async function(req, res) {
             res.status(404).json({ message: 'Email not found!' })
             return
         }
+
+        if (destUser.friends.includes(req.user.id)) {
+            res.status(400).json({ message: 'They are already friend.'})
+            return
+        }
+
         const newInvite = await Invite.create({ from: req.user.id,  to: destUser._id })
         res.status(201).json(newInvite)
     } catch(err) {
