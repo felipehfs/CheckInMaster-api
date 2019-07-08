@@ -30,11 +30,18 @@ exports.acceptInvite = async function(req, res) {
     try {
         const invite = await Invite.findOne({ _id: req.body.inviteId})
         const user = await User.findOne({ _id: req.user.id })
-        const index = user.friends.findIndex(friends => friends === invite.from)
+        const sender = await User.findOne({_id: invite.from })
+        const indexSender = user.friends.findIndex(friends => friends === invite.from)
+        const indexUser = sender.friends.findIndex(friends => friends === user.from)
 
-        if (index <  0) {
+        if (indexSender <  0) {
             user.friends.push(invite.from)
             await user.save()
+        }
+
+        if (indexUser < 0) {
+            sender.friends.push(user._id)
+            await sender.save()
         }
 
         invite.accept = "ACEITO"
